@@ -23,7 +23,8 @@ def show_quiz(questions_dict, quiz_number=1):
     random.shuffle(questions_keys)
 
     # no particular order needed
-    # this serves as a master list to generate 4 possible answers to each question
+    # this serves as a master list to generate 4 possible answers to each
+    # question
     all_answers_list = list(questions_dict.values())
 
     quiz_page_header = '''Name:\n\nDate:\n\nPeriod:\n
@@ -37,15 +38,21 @@ def show_quiz(questions_dict, quiz_number=1):
     for state_name in questions_keys:
         answer = questions_dict[state_name]
 
-        # typically 4 choices are shown after question, this is: which one is right
+        # typically 4 choices are shown after question, this is: which one is
+        # right
         nright_answer = random.randint(0, NCHOICES_PER_QUESTION - 1)
 
-        quiz_body += show_question(all_answers_list, question_number, state_name, answer, nright_answer)
+        quiz_body += show_question(all_answers_list,
+                                   question_number,
+                                   state_name,
+                                   answer,
+                                   nright_answer)
 
         # lines of answer sheet looks like:
         # 1. C
         # 2. A
-        answer_sheet_line = str(question_number) + '. ' + 'ABCD'[nright_answer] + '\n'
+        answer_sheet_line = str(question_number) + \
+            '. ' + 'ABCD'[nright_answer] + '\n'
         answer_sheet += answer_sheet_line
 
         question_number += 1
@@ -53,7 +60,8 @@ def show_quiz(questions_dict, quiz_number=1):
     return quiz_page_header + quiz_body, answer_sheet
 
 
-def potential_answers_list(all_answers_master_list, answer, nchoices, insert_index):
+def potential_answers_list(all_answers_master_list,
+                           answer, nchoices, insert_index):
     '''Generate a 4 item list of A, B, C, D choices for this question.
 
     Generates a list of answers.
@@ -61,7 +69,8 @@ def potential_answers_list(all_answers_master_list, answer, nchoices, insert_ind
     a real answer, where the real answer appears in a random location
     '''
 
-    # Start with all the capitals in a list by making a copy of the master list of answers
+    # Start with all the capitals in a list by making a copy of the master
+    # list of answers
     all_answers_copy = all_answers_master_list[:]
 
     # remove the real answer's capital from the master list
@@ -73,13 +82,18 @@ def potential_answers_list(all_answers_master_list, answer, nchoices, insert_ind
     return choices
 
 
-def show_question(all_answers_master_list, number, state, answer, nright_answer):
+def show_question(all_answers_master_list, number,
+                  state, answer, nright_answer):
     '''Show a single question with multiple choices picked from
     the list all_answers_master_list'''
 
     question_text = '%d. What is the capital of %s?\n' % (number, state)
 
-    choices = potential_answers_list(all_answers_master_list, answer, NCHOICES_PER_QUESTION, nright_answer)
+    choices = potential_answers_list(
+        all_answers_master_list,
+        answer,
+        NCHOICES_PER_QUESTION,
+        nright_answer)
 
     question_choices_text = ''
     for i in range(NCHOICES_PER_QUESTION):
