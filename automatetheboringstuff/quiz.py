@@ -141,7 +141,7 @@ if __name__ == '__main__':
         'Wisconsin': 'Madison',
         'Wyoming': 'Cheyenne'
     }
-(quiz_string, answers_string) = show_quiz(questions_dictionary)
-print(quiz_string)
-print('===============')
-print(answers_string)
+    (quiz_string, answers_string) = show_quiz(questions_dictionary)
+    print(quiz_string)
+    print('===============')
+    print(answers_string)
